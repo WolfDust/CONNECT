@@ -1,0 +1,45 @@
+name: Windows (Google Remote Desktop 1)
+
+on: 
+  workflow_dispatch:
+    inputs:
+      authcode:
+        description: 'Enter Google Remote Desktop (Windows PowerShell) code'
+        required: true
+      computername:
+        description: 'Computer Name'
+        default: 'CapciRDP1'
+        required: true
+      pincode:
+        description: 'Six digit Pin'
+        default: '666666'
+        required: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Mask Code & Pin.
+      shell: bash
+      run: |
+        _Code=$(jq -r '.inputs.authcode' $GITHUB_EVENT_PATH)
+        _CName=$(jq -r '.inputs.computername' $GITHUB_EVENT_PATH)
+        _Pin=$(jq -r '.inputs.pincode' $GITHUB_EVENT_PATH)
+        echo ::add-mask::$_Code
+        echo ::add-mask::$_CName
+        echo ::add-mask::$_Pin
+        echo AuthCode="$_Code" >> $GITHUB_ENV
+        echo ComputerName="$_CName" >> $GITHUB_ENV
+        echo AuthPin="$_Pin" >> $GITHUB_ENV
+    - name: Initializing Setup
+      run: |
+        Invoke-WebRequest https://raw.githubusercontent.com/WolfDust/GTRDP/main/GRDP-VPS.ps1 -OutFile GRDP-VPS.ps1
+        ./GRDP-VPS.ps1 ${{ env.ComputerName }}
+    - name: Starting Google Remote Desktop
+      run: ${{ env.AuthCode }} -pin=${{ env.AuthPin }}
+    - name: Keep Alive.
+      run: |
+        Invoke-WebRequest https://raw.githubusercontent.com/WolfDust/GTRDP/main/Files/GRDP.bat -OutFile GRDP.bat
+        sh ./GRDP.bat
