@@ -2,13 +2,6 @@
 
 * 2CPU & 7GB RAM
 
-
-* [![GitHub followers](https://img.shields.io/github/followers/CapciGithub.svg?style=social&label=Follow&maxAge=2592000)](https://github.com/CapciGithub) [![GitHub stars](https://img.shields.io/github/stars/CapciGithub/growtopia-stuff.svg?style=social&label=Star)](https://github.com/CapciGithub/growtopia-stuff) [![GitHub forks](https://img.shields.io/github/forks/CapciGithub/growtopia-stuff.svg?style=social&label=Fork)](https://github.com/CapciGithub/growtopia-stuff/fork) [![GitHub watchers](https://img.shields.io/github/watchers/CapciGithub/growtopia-stuff.svg?style=social&label=Watch)](https://github.com/CapciGithub/growtopia-stuff)
-
-
-* You can dm for help **highvisibilityraincoat#6666**.
-
-
 ### How to setup NGROK?.
 
 * Click Fork in the right corner of the screen to save it to your Github.
